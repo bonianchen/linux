@@ -11,8 +11,8 @@ get_executable_fullpath() {
 }
 
 install_app() {
-    if [ -e "${COMMAND_FOLDER}/${TARGET_APP}.sh" ]; then
-        source "${COMMAND_FOLDER}/${TARGET_APP}.sh"
+    if [ -e "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" ]; then
+        sh -c "${COMMAND_FOLDER}/install/${TARGET_APP}.sh"
     else
         sudo apt-get install -y "${TARGET_APP}"
     fi
