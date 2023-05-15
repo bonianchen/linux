@@ -14,3 +14,6 @@ if [ -z "${APP_PATH}" ]; then
     fi
 fi
 
+export PATH
+echo "${PATH}"
+

@@ -8,5 +8,13 @@ if [ -z "${APP_PATH}" ]; then
         curl -L https://go.dev/dl/go1.20.3.linux-amd64.tar.gz \
             | sudo tar -C /usr/local -xz
     fi
-    export PATH=~/go/bin:$PATH:/usr/local/go/bin
 fi
+
+USER_PATH=`echo ${PATH} | grep "${USER}\/go\/bin:"`
+if [ -z "${USER_PATH}" ]; then
+    PATH="${HOME}/go/bin:$PATH:/usr/local/go/bin"
+fi
+
+export PATH
+echo "${PATH}"
+

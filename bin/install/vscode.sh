@@ -13,3 +13,7 @@ if [ -z "${APP_PATH}" ]; then
     sudo apt install code-insiders
     sudo update-alternatives --set editor /usr/bin/code-insiders
 fi
+
+export PATH
+echo "${PATH}"
+

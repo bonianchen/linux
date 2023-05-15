@@ -1,20 +1,25 @@
 #!/bin/sh
 
 get_executable_fullpath() {
-    HEAD_OF_COMMAND=`echo $0 | cut -d'/' -f1`
+    THIS_COMMAND=$0
+    THIS_COMMAND="$HOME/bin/app_install.sh"
+    HEAD_OF_COMMAND=`echo ${THIS_COMMAND} | cut -d'/' -f1`
     if [ ! -z "${HEAD_OF_COMMAND}" ]; then
-        THIS_EXEC="`pwd`/$0"
+        THIS_EXEC="`pwd`/${THIS_COMMAND}"
     else
-        THIS_EXEC="$0"
+        THIS_EXEC="${THIS_COMMAND}"
     fi
     COMMAND_FOLDER=`dirname ${THIS_EXEC}`
 }
 
 install_app() {
     if [ -e "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" ]; then
-        sh -c "${COMMAND_FOLDER}/install/${TARGET_APP}.sh"
+        PATH=`sh -c "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" | tail -1`
     else
-        sudo apt-get install -y "${TARGET_APP}"
+        APP_EXISTANCE=`which ${TARGET_APP}`
+        if [ -z "${APP_EXISTANCE}" ]; then
+            sudo apt-get install -y "${TARGET_APP}"
+        fi
     fi
 }
 
@@ -22,10 +27,10 @@ install_app() {
 if [ $# -eq 1 ]; then
     TARGET_APP=`basename $1`
     if [ ! -z "${TARGET_APP}" ]; then
-        APP_EXISTANCE=`which ${TARGET_APP}`
-        if [ -z "${APP_EXISTANCE}" ]; then
-            get_executable_fullpath
-            install_app
-        fi
+        get_executable_fullpath
+        install_app
     fi
 fi
+
+export PATH
+echo "${PATH}"

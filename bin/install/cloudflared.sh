@@ -7,3 +7,6 @@ APP_PATH=`which cloudflared`
     --output cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared-linux-amd64.deb
 #fi
 
+export PATH
+echo "${PATH}"
+

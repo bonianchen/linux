@@ -21,3 +21,6 @@ if [ -z "${APP_PATH}" ]; then
     newgrp docker
     docker run hello-world
 fi
+
+export PATH
+echo "${PATH}"

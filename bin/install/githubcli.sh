@@ -10,3 +10,7 @@ if [ -z "${APP_PATH}" ]; then
     && sudo apt update \
     && sudo apt install gh -y
 fi
+
+export PATH
+echo "${PATH}"
+
