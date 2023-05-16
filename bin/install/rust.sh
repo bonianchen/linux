@@ -9,10 +9,11 @@ if [ -z "${APP_PATH}" ]; then
 	chmod +x /tmp/rustup.sh
 	sh -c "/tmp/rustup.sh -y"
         sh -c "$HOME/.cargo/env"
+	PATH=$HOME/.cargo/bin:$PATH
         rustup toolchain install nightly
         rustup override set nightly
     else
-        sh -c "$HOME/.cargo/env"
+	PATH=$HOME/.cargo/bin:$PATH
     fi
 fi
 
