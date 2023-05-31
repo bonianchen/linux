@@ -14,7 +14,8 @@ get_executable_fullpath() {
 
 install_app() {
     if [ -e "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" ]; then
-        PATH=`sh -c "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" | tail -1`
+        #PATH=`sh -c "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" | tail -1`
+        PATH=`source "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" | tail -1`
     else
         APP_EXISTANCE=`which ${TARGET_APP}`
         if [ -z "${APP_EXISTANCE}" ]; then
