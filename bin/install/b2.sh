@@ -13,7 +13,11 @@ if [ -z "${APP_PATH}" ]; then
   else
     source app_install.sh pip
     pip install b2
-    set PATH=${PATH}:$OME/.local/bin
+    PATH=${PATH}:${HOME}/.local/bin
+  fi
+else
+  if [ -z "${IS_X86}" ]; then
+    PATH=${PATH}:${HOME}/.local/bin
   fi
 fi
 
