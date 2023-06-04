@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Try to install $1"
+
 get_executable_fullpath() {
     THIS_COMMAND=$0
     THIS_COMMAND="$HOME/bin/app_install.sh"
@@ -14,12 +16,13 @@ get_executable_fullpath() {
 
 install_app() {
     if [ -e "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" ]; then
-        #PATH=`sh -c "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" | tail -1`
-        PATH=`source "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" | tail -1`
+        PATH=`sh -c "${COMMAND_FOLDER}/install/${TARGET_APP}.sh | tail -1"`
+        #PATH=`source "${COMMAND_FOLDER}/install/${TARGET_APP}.sh" | tail -1`
     else
         APP_EXISTANCE=`which ${TARGET_APP}`
         if [ -z "${APP_EXISTANCE}" ]; then
-            sudo apt-get install -y "${TARGET_APP}"
+            #sudo apt-get install -y "${TARGET_APP}"
+            sudo apt install -y "${TARGET_APP}"
         fi
     fi
 }
